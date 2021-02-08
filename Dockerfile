@@ -1,13 +1,13 @@
-FROM golang:1.14-alpine
+FROM golang:alpine
 
 WORKDIR /go/src/github.com/abutaha/aws-es-proxy
 COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o aws-es-proxy
 
-FROM alpine:3.11
+FROM alpine
 LABEL name="aws-es-proxy" \
-      version="latest"
+      version="1.2"
 
 RUN apk --no-cache add ca-certificates
 WORKDIR /home/
